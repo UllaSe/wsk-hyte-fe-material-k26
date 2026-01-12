@@ -1,6 +1,6 @@
-# Vite asentaminen
+# Vite - asentaminen
 
-Asennetaan ensin vite, HUOM luo tätä projektia varteb **uusi tyhjä kansio** (esim. FE) erillään back-end projektista. FE ja BE elävät siis omissa projekteissaan:
+Asennetaan ensin vite, HUOM luo tätä projektia varten **uusi tyhjä kansio** (esim. FE) erillään back-end projektista. FE ja BE elävät siis omissa projekteissaan:
 
 ### Setting up Vite for front-end (client) development
 
