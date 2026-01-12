@@ -75,3 +75,5 @@ export default {
 # Testijulkaisu verkkolevylle
 
 Julkaise reponsiivinen sivusi yllä olevien vite ohjeiden mukaan ja siirrä dist kansion sisältö verkkolevyllesi. Testaa että kaikki toimii kuten pitää.
+
+Voit siirtää tiedostot kätevästi webdisk.metropolia.fi palvelun kautta. Luomme SSH avainparin tuntien aikana koulun sisäverkossa. Tarvitset sitä muiden ohjelmistojen käyttöön.
