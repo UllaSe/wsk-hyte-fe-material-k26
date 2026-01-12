@@ -42,7 +42,7 @@ Jotta oppisimme tällä kurssilla uusia asioita, on sivuston teknologisiin ratka
 
 <hr>
 
-## Luento 0. Kertaus
+## Viikko1 - Kertaus
 
 Mahdollisuuksia eri html elementtien asemointiin sivuilla on monia, ja tämä onkin usein hankalimpia CSS konsepteja hallita. Perustasolla, sinulla on käytettävissä seuraavat:
 
@@ -60,9 +60,7 @@ Ensimmäisenä päivänä harjoittelemme näitä asioita, löydät asemoinnin tr
 
 Näitä osittain korvaamaan ja helpottamaan onkin suunniteltu Flexbox ja CSS Grid käsitteet. Flex ja Grid toimivat molemmat mukavasti yhdessä, kummallakin on kuitenkin oat käyttötarkoituksensa. Näihin syvennymme kunnolla seuraavien viikkojen aikana.
 
-## Luento 1. Sivuston aloittaminen, palautettava viikkotehtävä
-
-### 1. TEHTÄVÄ – Rakenna alla olevan kuvan mukainen sivusto
+### 1. TEHTÄVÄ – Palautettava viikkotehtävä
 
 Ensimmäisellä viikolla saat käyttää siis vain perus asemointia, **ei flexbox, eikä grid asettelua**. Ensin teemme vain osan sivustosta. Aloitamme sivun about ja navigaatio-osuudesta. Huomaa, että sivujen pitää olla myös keskitetty.
 
@@ -75,7 +73,9 @@ Käytä sivuston esimerkkidesignia vain pohjana. Mieti oma hyvinvointiteemasi. *
 - Kirjoita HTML sekä CSS-koodi erillisiin tiedostoihin, jonka avulla luot sivustosi
 - Opettele koodatessasi samalla Emmetin käyttöä
 - Yhteystieto-osion takana näkyvä kuva on tehty css taustakuvana. Mikäli tämä on vielä hakusessa, käytä vain väriä.
-- Saat tehtyä suorakulmaisista elementeistä ja reunuksista helposti pyöreitä/pyöristettyjä käyttämällä [border-radius määrittelyä](https://www.w3schools.com/cssref/css3_pr_border-radius.asp) [reunoja](https://www.w3schools.com/css/css_border.asp)
+- Saat tehtyä suorakulmaisista elementeistä ja reunuksista helposti pyöreitä/pyöristettyjä käyttämällä
+  - [border-radius määrittelyä](https://www.w3schools.com/cssref/css3_pr_border-radius.asp)
+  - [reunoja](https://www.w3schools.com/css/css_border.asp)
 - Jos haluat käyttää varjostusta, eli Box-shadow ominaisuutta:
   - [box-shadow](https://css-tricks.com/almanac/properties/b/box-shadow/)
   - [box-shadow w3schools](https://www.w3schools.com/cssref/css3_pr_box-shadow.asp)
@@ -83,8 +83,10 @@ Käytä sivuston esimerkkidesignia vain pohjana. Mieti oma hyvinvointiteemasi. *
   - [CSS Pseudo-classes](https://www.w3schools.com/css/css_pseudo_classes.asp)
 - Muista hyvät nimeämiskäytännöt
 
-1. https://www.w3schools.com/css/css_navbar.asp
-2. https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav
+Navigaation tekemiseen voit käyttää valmista koodia, mutta muokkaa sitä sivuusi sopivaksi
+
+- [Esimerkkinavigaatio](https://www.w3schools.com/css/css_navbar.asp)
+- [MDN Nav Elementti](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav)
 
 Lisäämme seuraavilla viikolla sivulle mm. responsivisuuden, nämä voi jättää toistaiseksi pois. Palautusohjeet löydät OMAsta.
 
