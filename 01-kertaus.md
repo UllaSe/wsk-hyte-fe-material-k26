@@ -17,7 +17,7 @@ https://dribbble.com/shots/23369008-Gym-Fitness-Landing-Page
 
 Asioita joita mm. käsittelemme tällä kurssilla ja lopullisessa sivustossa on oltava:
 
-- HTML, CSS ja Javacript
+- HTML, CSS ja Javascript
 - REST, Fetch, Autentikaatio
 - Oma sovellus, jossa Käytetty kaikkia perus asemoinnin käsitteitä
 - Semanttiset elementit ja niiden oikeanlainen hyödyntäminen
