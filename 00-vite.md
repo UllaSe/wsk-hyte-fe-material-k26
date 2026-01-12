@@ -36,22 +36,21 @@ Asennetaan ensin vite, HUOM luo tätä projektia varten **uusi tyhjä kansio** (
    - If you have more html files than just `index.html`, you need to add them to [configuration](https://vitejs.dev/guide/build#multi-page-app). Create a file called `vite.config.js` into your project's root folder:
 
    ```js
-   // vite.config.js
-   import { defineConfig } from 'vite';
    import { resolve } from 'path';
+   import { defineConfig } from 'vite';
 
-
-    export default defineConfig({
-      base: './',
-      build: {
-        rollupOptions: {
-          input: {
-          main: resolve(**dirname, 'index.html'),
-          home: resolve(**dirname, 'home.html'),
-          },
-        },
-      },
-    });
+   export default defineConfig({
+   	build: {
+   		rollupOptions: {
+   			input: {
+   				// List your html files here, e.g:
+   				main: resolve(__dirname, 'index.html'),
+   				about: resolve(__dirname, 'about.html'),
+   			},
+   		},
+   	},
+   	base: './',
+   });
    ```
 
 1. Copy all contents of `dist/` folder to the web server's public folder
