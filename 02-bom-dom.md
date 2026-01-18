@@ -17,7 +17,7 @@ Bom, Dom ja Eventit
 
 Käy hakemassa alla oleva **harjoituspohja**:
 
-2. [HARJOITUSPOHJA](harjoitukset/vk2-harjoituspohja.html)
+2. [HARJOITUSPOHJA](viikkoesimerkit/vk2-harjoituspohja.html)
 
 - Käytämme tätä pohjaa harjoittelemaan BOM ja DOM manipulointia
 - Löydät alla pohjasta kaiken tarvittavan alla olevan tehtävän tekemiseen
