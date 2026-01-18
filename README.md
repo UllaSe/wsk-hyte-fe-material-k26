@@ -2,13 +2,13 @@
 
 Viikko 1
 
-0. [Vite](00-vite.md)
 1. [Kurssin sisällöstä, HTML ja CSS kertaus](01-kertaus.md)
 2. [Viikon 1 linkit](01-linkkejä.md)
 
 Viikko 2
 
-1. JS kertaus, BOM, DOM ja eventit
+1. [Asennetaan vite kehitysympäristö](00-vite.md)
+2. [JS kertaus, BOM, DOM ja eventit](02-bom-dom.md)
 
 Viikko 3
 
