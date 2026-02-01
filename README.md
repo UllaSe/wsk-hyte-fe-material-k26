@@ -17,7 +17,8 @@ Viikko 3
 
 Viikko 4
 
-1. Fetch, Selektorit, Muuttujat
+1. [Fetch](04-fetch.md)
+2. Selektorit, Muuttujat
 
 Viikko 5
 
