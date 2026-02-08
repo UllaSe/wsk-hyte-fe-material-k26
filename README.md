@@ -15,18 +15,17 @@ Viikko 3
 1. [Responsiivinen suunnittelu](03-responsiivisuus.md)
 2. [Viikon 3 linkit](03-linkkejä.md)
 
-Viikko 4
+Viikko 4 ja 5
 
 1. [Fetch](04-fetch.md)
-2. Selektorit, Muuttujat
 
 Viikko 5
 
-1. Flexbox Layout, Dialogit, Modaalit
+1. Flexbox kotitehtävänä
 
 Viikko 6
 
-1. Validointi, Autentikointi
+1.  Dialogit, Modaalit, Validointi, Autentikointi
 
 Viikko 7
 

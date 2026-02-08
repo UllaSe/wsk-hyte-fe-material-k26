@@ -19,8 +19,10 @@ Teemme harjoitukset suoraan vite-ympäristöön. Laitamme samalla rakenteen sivu
 
 # Fetch API
 
-1. [Fetch API](https://github.com/ilkkamtk/JavaScript-english/blob/main/apit-ajax.md#fetch-api)
+1. [Fetch ensimmäiseltä vuodelta](https://github.com/ilkkamtk/JavaScript-english/blob/main/apit-ajax.md#fetch-api)
    - Käy läpi JSON ja Fetch API
+
+2. [Fetch API - MDN](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
 
 Fetch API on moderni JavaScript-ohjelmointirajapinta, joka tarjoaa käyttöliittymän verkkopyyntöjen (esim. HTTP-pyyntöjen) tekemiseen web-selaimissa ja Node.js-ympäristöissä. Se on suunniteltu olemaan joustavampi ja tehokkaampi kuin vanhempi XMLHttpRequest.
 
@@ -82,116 +84,147 @@ getData();
 
 Tässä esimerkissä getData on async-funktio, joka käyttää await-avainsanaa odottamaan Fetch API -pyynnön valmistumista ja vastauksen muunnosta JSON-muotoon. Virheiden käsittely tapahtuu try-catch -rakenteessa. Funktio getData kutsutaan sitten suorituksen aloittamiseksi.
 
-## Rakennetaan ensin GET ja DELETE kutsut items reittiin
+## Fetch API – HTTP-metodit ja optiot
+
+Fetch API:lla tehdään HTTP-pyyntöjä backend-rajapintaan. Pyyntö koostuu kahdesta pääosasta:
+
+1. URL – mihin resurssiin ollaan yhteydessä
+
+2. Optiot (options-objekti) – mitä tehdään ja millä tiedoilla
 
 Seuraa luentoa, käymme läpi sekä taulukkojen rakenteen, että itse FETCHin käytön. Valmiiseen pohjaan täytyy pystyä hakemaan kaikki items tiedot sekä users tiedot omasta backendistä. Lisäksi formista täytyy pystyä lisäämään uusi käyttäjä. Mahdolliset virheet sekä onnistumiset tiedon käsittelyssä näytetään sekä konsolissa että tarvittavin toast-viestein käyttäjälle. Viestit jotka käyttäjä näkee on backendin palauttamat response.message tai response.error tiedot.
 
-### Tehtävä 1 - Hae kaikki items tiedot omasta backendistä ja printtaa tulos konsoliin sekä luo lista sivulle
+### Tehtävä - Hae kaikki items tiedot, tulosta konsoliin sekä luo lista sivulle
 
 ![image](images/viikko4.png)
+
+**GET – hae tietoa**
 
 ```http
 # Get all items
   GET http://127.0.0.1:3000/api/items
 ```
 
-### Tehtävä 2 - Hae ja deletoi yksittäinen item käyttäen formia
+```js
+fetch('http://localhost:3000/api/items/1', {
+	method: 'GET',
+});
+```
+
+Käytetään tietojen hakemiseen.
+Ei sisällä bodya.
+
+### Tehtävä - Hae sekä deletoi yksittäinen item käyttäen formia
+
+DELETE – poista dataa
+
+Poistaa resurssin ID:n perusteella.
+Ei bodya.
 
 ```http
 # Get item with id
   GET http://127.0.0.1:3000/api/items:id
 ```
 
-## Päivä 2
+```http
+# Delete item with id
+  DELETE http://127.0.0.1:3000/api/items:id
+```
 
-### Tehtävä 1 - Käyttäjien hakeminen sekä taulukon luominen
+```js
+fetch('http://localhost:3000/api/items/4', {
+	method: 'DELETE',
+});
+```
 
-Kun painat nappulaa "Hae users tiedot" haetaan tiedot:
+### Tehtävä - Lisää uusi hedelmä käyttäen formia
+
+POST – lisää uutta dataa
+
+![image](images/post.png)
+
+Käytetään uuden resurssin luomiseen.
+Sisältää body-datan JSON-muodossa.
 
 ```http
-# Get all users
-  GET http://127.0.0.1:3000/api/users
+# Post all items
+  POST http://127.0.0.1:3000/api/items
 ```
+
+```js
+fetch('http://localhost:3000/api/items', {
+	method: 'POST',
+	headers: {
+		'Content-Type': 'application/json',
+	},
+	body: JSON.stringify({
+		name: 'Mandariini',
+		weight: 86,
+	}),
+});
+```
+
+Post luo uuden resurssin ja backend luo ID:n. Body on pakollinen.
+
+### Tehtävä - Muokkaa haluttua itemiä käyttäen formia
+
+PUT – päivitä olemassa oleva data
+
+Käytetään koko resurssin päivittämiseen ID:n perusteella.
+
+![image](images/put.png)
+
+```http
+# Update details of a specific item by its ID
+  PUT http://127.0.0.1:3000/api/items/:id
+```
+
+```js
+fetch('http://localhost:3000/api/items/4', {
+	method: 'PUT',
+	headers: {
+		'Content-Type': 'application/json',
+	},
+	body: JSON.stringify({
+		name: 'Päivitetty Mandariini',
+		weight: 90,
+	}),
+});
+```
+
+### Tehtävä - Hae items ja generoi niistä taulukko
+
+![image](images/table.png)
 
 Haetuista tiedoista generoidaan taulukko dynaamisesti DOM metodeilla ja jokaiselle taulukon jäsenelle generoidaan Info sekä Delete button-elementit. Button elementeille lisätään data-attribuuttina käyttäjän ID jatkokäsittelyä varten.
 
 ```html
 <tr>
-	<td>johndoe</td>
-	<td>regular</td>
-	<td><button class="check" data-id="1">Info</button></td>
-	<td><button class="del" data-id="1">Delete</button></td>
+	<td>Banana</td>
+	<td><button class="check">Info</button></td>
+	<td><button class="del">Delete</button></td>
 	<td>1</td>
 </tr>
 ```
 
-**DOM ja elementtien luominen**
-
-DOM (Document Object Model) on ohjelmointirajapinta, joka esittää dokumentin rakenteen HTML:ssä, XML:ssä tai XHTML:ssä, jotta ohjelmistot voivat muuttaa dokumentin sisältöä, rakennetta ja tyyliä. DOM kuvaa dokumentin kuin puurakenteen, jossa jokainen elementti on solmu.
-
 Elementtien luominen DOM:ssa tarkoittaa uusien HTML- tai XML-elementtien luomista dynaamisesti JavaScriptillä. Tämä voi sisältää uusien elementtien luomisen tyhjästä, niiden muokkaamisen tai lisäämisen olemassa olevaan dokumenttiin. Elementtien luominen DOM:ssa on tärkeä osa dynaamisten verkkosivujen ja sovellusten kehittämistä, koska se mahdollistaa sisällön ja rakenteen luomisen ja muokkaamisen käyttäjän toiminnan perusteella.
 
-1. [DOM](https://github.com/ilkkamtk/JavaScript-english/blob/main/BOM-DOM-event.md#document-interface)
-   - Käy läpi DOM osuus ja elementtien luonti
+[DOM](https://github.com/ilkkamtk/JavaScript-english/blob/main/BOM-DOM-event.md#document-interface)
 
 ```js
-users.forEach((user) => {
+items.forEach((item) => {
 	const row = document.createElement('tr');
 
 	row.innerHTML = `
-      <td>${user.username}</td>
-      <td>${user.email}</td>
-      <td><button class="check" data-id="${user.id}">Info</button></td>
-      <td><button class="del" data-id="${user.id}">Delete</button></td>
-      <td>${user.id}</td>
+      <td>${item.name}</td>
+      <td><button class="check" data-id="${item.id}">Info</button></td>
+      <td><button class="del" data-id="${item.id}">Delete</button></td>
+      <td>${item.id}</td>
     `;
 
 	tableBody.appendChild(row);
 });
 ```
-
-### Tehtävä 2 - Käyttäjien lisääminen
-
-Lisää käyttäjiä formin avulla. Formi lisää uuden käyttäjän nappulasta 'Add User'.
-
-```http
-  POST http://localhost:3000/api/users
-  content-type: application/json
-
-  {
-    "username": "Uusi käyttäjä",
-    "password": "salakala",
-    "email": "newuser@example.com"
-  }
-```
-
-Saat haettua formista tiedot seuraavasti:
-
-```js
-////// main.js
-
-const addUserForm = document.querySelector('.formpost');
-addUserForm.addEventListener('click', addUser);
-
-////// users.js
-
-const addUser = async (event) => {
-
-  event.preventDefault();
-  const url = 'http://localhost:3000/api/users';
-
-  // Get form values
-  const username = document.querySelector('#username').value.trim();
-  const password = document.querySelector('#password').value.trim();
-  const email = document.querySelector('#email').value.trim();
-  ... koodi jatku...
-```
-
-Kun käyttäjä lisätään onnistuneesti tai lisääminen epäonnistuu voit tehdä konsoliin tulostamisen tai alertin sijaan kauniin toast viestin. Näytä kuitenkin sekä konsolissa, että alert/toast tiedoissa backendistä tuleva message.
-
-### TEHTÄVÄ 3 - Yksittäisen käyttäjän tiedot
-
-Testaa yksittäisen käyttäjän tiedon hakua. Ei ole väliä teetkö nappulan harjoituspohjaan, vai kentien taulukon tai alertin, kunhan saat haettua käyttäjän ID:n perusteella taustapalvelusta tiedot.
 
 **Jos haluat haastetta:** Taulukon listan jokaisella jäsenellä on info nappula. Lisää toiminto, jossa "Info" nappulaa painamalla haetaan yksittäisen käyttäjän tiedot. Tähän tarvitse data-attribuutteja.
 
@@ -215,6 +248,21 @@ const addButtonEventListeners = () => {
 		});
 	});
 };
+```
+
+### Kotitehtävä - Käyttäjien lisääminen
+
+Lisää käyttäjiä formin avulla. Formi lisää uuden käyttäjän nappulasta 'Add User'. Treenaa myös muitakin users reittejä sitä mukaan kun saat ne valmiiksi.
+
+```http
+  POST http://localhost:3000/api/users
+  content-type: application/json
+
+  {
+    "username": "Uusi käyttäjä",
+    "password": "salakala",
+    "email": "newuser@example.com"
+  }
 ```
 
 ### Materiaalia tuntien tueksi
