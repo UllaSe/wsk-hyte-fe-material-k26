@@ -96,7 +96,7 @@ Seuraa luentoa, käymme läpi sekä taulukkojen rakenteen, että itse FETCHin k�
 
 ### Tehtävä - Hae kaikki items tiedot, tulosta konsoliin sekä luo lista sivulle
 
-![image](images/viikko4.png)
+<img src="images/viikko4.png" alt="Projektin rakenne" width="50%">
 
 **GET – hae tietoa**
 
@@ -141,7 +141,7 @@ fetch('http://localhost:3000/api/items/4', {
 
 POST – lisää uutta dataa
 
-![image](images/post.png)
+<img src="images/post.png" alt="Projektin rakenne" width="50%">
 
 Käytetään uuden resurssin luomiseen.
 Sisältää body-datan JSON-muodossa.
@@ -172,7 +172,7 @@ PUT – päivitä olemassa oleva data
 
 Käytetään koko resurssin päivittämiseen ID:n perusteella.
 
-![image](images/put.png)
+<img src="images/put.png" alt="Projektin rakenne" width="50%">
 
 ```http
 # Update details of a specific item by its ID
@@ -194,7 +194,7 @@ fetch('http://localhost:3000/api/items/4', {
 
 ### Tehtävä - Hae items ja generoi niistä taulukko
 
-![image](images/table.png)
+<img src="images/table.png" alt="Projektin rakenne" width="50%">
 
 Haetuista tiedoista generoidaan taulukko dynaamisesti DOM metodeilla ja jokaiselle taulukon jäsenelle generoidaan Info sekä Delete button-elementit. Button elementeille lisätään data-attribuuttina käyttäjän ID jatkokäsittelyä varten.
 
