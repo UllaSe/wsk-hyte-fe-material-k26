@@ -226,7 +226,7 @@ items.forEach((item) => {
 });
 ```
 
-**Jos haluat haastetta:** Taulukon listan jokaisella jäsenellä on info nappula. Lisää toiminto, jossa "Info" nappulaa painamalla haetaan yksittäisen käyttäjän tiedot. Tähän tarvitse data-attribuutteja.
+**Jos haluat haastetta:** Taulukon listan jokaisella jäsenellä on info nappula. Lisää toiminto, jossa "Info" nappulaa painamalla haetaan yksittäisen käyttäjän tiedot. Tähän tarvitse data-attribuutteja. Oikeassa projektissa ID olisi syytä ehkä piilottaa, mutta tämän projektin puitteissa ja harjoitteluna on ok, että id on esim. piilotetussa input kentässä tai data-attribuuttina.
 
 ```http
 ### get item by id
@@ -236,15 +236,15 @@ GET http://localhost:3000/api/users/:id
 Jokaisella rivillä on tallennettuna id data-attribuuttiin. Voit hakea kyseisen rivin id tiedot esim. seuraavasti:
 
 ```js
-////// users.js
+////// items.js
 
 // Add event listeners for buttons (Info)
 const addButtonEventListeners = () => {
 	document.querySelectorAll('.check').forEach((button) => {
 		button.addEventListener('click', async (event) => {
-			const userId = event.target.dataset.id;
-			alert(`Showing info for user ID: ${userId}`);
-			// TODO: Fetch more info or show user details here
+			const itemId = event.target.dataset.id;
+			alert(`Showing info for user ID: ${itemId}`);
+			// TODO: Fetch more info or show item details here
 		});
 	});
 };
