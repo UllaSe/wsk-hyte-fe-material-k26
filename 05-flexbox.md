@@ -1,104 +1,3 @@
-# UIn päivitys, tärkeitä komponentteja ja Flexbox
-
-### Modaalit ja Dialogit
-
-**Tutkitaan ensin perus Modaaleja**
-
-https://www.w3schools.com/howto/howto_css_modals.asp
-
-Modaalien kanssa on perinteisesti ollut jonkunverran hankaluuksia, kuten se, että modaalin tausta yhä scrollaantuu vaikkakin käyttäjällä on modaal auki. Näytän tästä tunnilla pari esimerkkiä. Modaaleja korvaamaan on lähivuosina kehitetty uusi html elementti **dialog** joka tarjoaa natiivin tuen modaaleille.
-
-**Dialog**
-
-https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog
-
-Käytämme tänään dialogin luomiseen valmista koodia hieman muunneltuna. Dialogin avaamiseen, kuten modaalien tarvitsen hippasen JS koodia. Katso alla oleve CodePen esimerkki.
-
-- https://css-tricks.com/how-to-implement-and-style-the-dialog-element/
-- Lue tämä myös tarkkaan: https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement
-
-Lisätään Dialogille myös Backdrop ominaisuus.
-
-- https://css-tricks.com/almanac/selectors/b/backdrop/ <br>
-- https://codepen.io/chergav/pen/zYYbjaE
-  <br>
-
-### Tehtävä 1 - Listään testisivuille ensin dialogi
-
-Lisää seuraavat rivit html sivuillesi:
-
-```html
-<dialog class="info_dialog">
-	<div class="item_info">
-		<!-- tähän täytetään items tiedot -->
-		<!-- # Get item by id -->
-		<!-- GET http://127.0.0.1:3000/api/items/1 -->
-
-		<div>
-			ItemID:
-			<span>Id</span>
-		</div>
-		<div>
-			ItemName:
-			<span>Name</span>
-		</div>
-		<div>
-			Weight:
-			<span>Weight</span>
-		</div>
-	</div>
-	<button autofocus>Close</button>
-</dialog>
-```
-
-Esin lisätään koodi jolla dialogi löytyy sekä se voidaan sulkea.
-
-```js
-// Dialog
-/////////////////////////////
-
-const dialog = document.querySelector('.info_dialog');
-const closeButton = document.querySelector('.info_dialog button');
-// "Close" button closes the dialog
-closeButton.addEventListener('click', () => {
-	dialog.close();
-});
-```
-
-Lisätään nyt kaikille items listan rivien "Info" dekä "Delete" nappuloille tapahtumankuuntelijat. Kun nappuloita klikataan, haetaan tai poistetaan yksittäisen esineen tiedot taustapalvelusta id perusteella. Mikäli Info nappulaa painetaa, avaa se tiedot dialogiin. Tapahtumankuuntelijat voidaan lisätä samassa funktiossa kuin itse taulukon luominen tapahtuu tai vaihtoehtoisesti omana funktionaan kun taulukko on jo luotu.
-
-```js
-const addButtonEventListeners = () => {
-	document.querySelectorAll('.check').forEach((button) => {
-		button.addEventListener('click', async (event) => {
-			const itemId = event.target.dataset.id;
-			const item = await getItemById(itemId);
-
-			if (item) {
-				// Clicking the info button opens the dialog
-				dialog.showModal();
-				dialog.querySelector('.item_info').innerHTML = `
-          <div>Item ID: <span>${item.id}</span></div>
-          <div>Item Name: <span>${item.name}</span></div>
-          <div>Weight: <span>${item.weight === undefined ? 'Not available' : item.weight}</span></div>`;
-			}
-		});
-	});
-
-	document.querySelectorAll('.del').forEach((button) => {
-		button.addEventListener('click', async (event) => {
-			const itemId = event.target.dataset.id;
-			deleteItemById(itemId);
-			// TODO päivitä UI lista tämän jälkeen
-		});
-	});
-};
-```
-
-Tyylittele dialogi ja katso että kaikki tiedot tulostuvat dialogiin.
-
-![image](images/dialog.png)
-
 ## Flexbox
 
 Flexbox on CSS3:n osa, joka tarjoaa tehokkaan tavan järjestellä ja hallita elementtejä rivi- ja sarakemuodostelmissa joustavasti ja dynaamisesti. "Flexbox" tulee sanasta "Flexible Box", mikä kuvaa sen kykyä mukautua erilaisiin näyttökoon muutoksiin ja sisällön määriin. Flexbox on erityisen hyödyllinen silloin, kun halutaan luoda responsiivisia ja monipuolisia käyttöliittymiä verkkosivuille tai web-sovelluksiin.
@@ -131,20 +30,112 @@ Harjoittelemme tekemään vastaavanlaisen layoutin yhdessä:
 
 ![image](images/cat.png)
 
+## Kirjaantuneen käyttäjän apikutsut ja niiden käsittely
+
 ### Tehtävä 2 - Kortit
 
-Luo uusi sivu johon haet taustapalvelusta käyttäjän päiväkirjamerkinnät ja luot niille tarvittavan määrän kortteja. Luomisessa ja asemoinnissa käytä Flexbox-layout ominaisuuksia. Voit käyttää korteissa omaa tyylittelyä.
-
-```http
-# Get all entries
-GET http://localhost:3000/api/entries
-```
-
-Vinkki: Tähän elementtien generoimiseen voit helposti käyttää chatgpt ym apureita. Anna toivottu html koodi ja pyydä tekoälyä kirjoittamaan elementtien luominen js:n avulla. Tarkista kuitenkin että generoitu koodi on järkevää.
-
-Jos rajapintasi ei vielä toimi tai vaatii tokenin käytän, voit toistaiseksi hakea korttien tekstisisällön tiedostosta. Luo **diary.json** niminen tiedosto projektiisi ja siirrä se **public** kansioon ja tee fetch suoraan tiedostoon.
+Luo uusi sivu johon haet taustapalvelusta käyttäjän päiväkirjamerkinnät ja luot niille tarvittavan määrän kortteja. Luomisessa ja asemoinnissa käytä Flexbox-layout ominaisuuksia. Voit käyttää korteissa omaa tyylittelyä. Korttien hakuun tarvitset nyt tokenin.
 
 ![image](images/flexbox-card.png)
+
+```http
+GET {{apiurl}}/entries
+Authorization: Bearer {{token}}
+```
+
+Jotta me saamme tokenin, on tottakai ensin kirjauduttava sisään. Hae seuraavaksi sisäänkirjatumisfomi, login.html jolla harjoittelemme sisäänkirjautumista sekä tokenien tallentamista täältä:
+
+[Tiedostot](viikkoesimerkit/vk6)
+
+Kun sisäänkirjautuminen onnistuu, ohjataan käyttäjä pääsivulle, jolla käyttäjä voi tehdä rajapintakutsuja sisäänkirjaantuneena, sillä nyt saamme kaikkiin kutsuihin mukaan tokenin tarvittaessa.
+
+## Autentikaatio sekä Tokenit
+
+JWT (JSON Web Token) autentikaatio on menetelmä, joka mahdollistaa turvallisen ja tehokkaan käyttäjän tunnistamisen ja valtuuttamisen web-sovelluksissa ja REST-rajapinnoissa. Se perustuu tokenien käyttöön, jotka ovat pieniä datayksiköitä, jotka sisältävät tietoja käyttäjän tunnistamiseksi ja valtuuttamiseksi. JWT-avainta käytetään usein lähettämään käyttäjän tunnistetietoja, kuten käyttäjätunnus ja rooli, ja se voi myös sisältää muita metatietoja. JWT:t ovat turvallisia, koska ne ovat allekirjoitettuja, mikä tarkoittaa, että niiden alkuperä voidaan varmistaa ja tietoja ei voi muuttaa ilman avainta. REST-rajapinnoissa JWT-tokenit usein välitetään HTTP-otsakkeiden kautta pyyntöjen autentikoimiseksi ja käyttöoikeuksien varmistamiseksi.
+
+JWT-tokenit voidaan lähettää HTTP-pyynnön otsakkeissa. Yleisimmin käytetty otsake on Authorization, joka sisältää JWT-tokenin. Esimerkiksi:
+
+```js
+Authorization: Bearer <JWT-tokeni>
+```
+
+JWT-tokenin vastaanottaminen tapahtuu vastaavasti. Sovellus tarkistaa saapuvan pyynnön otsakkeista, evästeistä tai pyyntöparametreista JWT-tokenin, joka sisältää tarvittavat käyttäjän tunnistetiedot ja käyttöoikeudet. Sen jälkeen sovellus voi tarkistaa tokenin aitouden ja käyttöoikeudet sen allekirjoituksen avulla. Jos tokeni on validi, sovellus voi antaa käyttäjälle pääsyn pyydettyyn toiminnallisuuteen tai resursseihin.
+
+1. **Käyttäjä kirjautuu sisään:**
+   Käyttäjä syöttää käyttäjätunnuksen ja salasanan login-formiin ja lähettää ne backend-palvelimelle.
+
+2. **Backend validoi tunnukset:**
+   Palvelin tarkistaa tunnukset ja jos ne ovat oikeat, se generoi JWT-tokenin, joka sisältää allekirjoitetun datan, kuten käyttäjän ID:n ja roolit.
+
+3. **Token palautetaan:**
+   Palvelin palauttaa JWT-tokenin frontendiin (yleensä JSON-muodossa).
+
+4. **Token tallennetaan selaimeen:**
+   Frontend tallentaa tokenin selaimen muistiin.
+
+   [Logal Storage](https://www.w3schools.com/jsref/prop_win_localstorage.asp)
+
+```js
+const response = await fetchData(url, options);
+localStorage.setItem('token', response.token);
+```
+
+5. **Autentikoidut pyynnöt:**
+   Jokaisessa suojatussa API-kutsussa frontend lisää tokenin Authorization-otsikkoon. Palvelin tarkistaa saapuvan tokenin allekirjoituksen ja voimassaolon. Jos token on kelvollinen, pyyntö hyväksytään.
+
+```http
+GET {{apiurl}}/entries
+Authorization: Bearer {{token}}
+```
+
+Edellisten viikkojen items.js koodiin verrattuna, haetaan kutsun yhteydessä nyt selaimen localstorageen tallennettu tokeni. Tämä tokeni lisätään kutsun otsikkoon.
+
+Koodiesimerkki:
+
+```js
+const url = 'http://localhost:3000/api/entries';
+
+let headers = {};
+let token = localStorage.getItem('token');
+
+if (token) {
+	headers = {
+		Authorization: `Bearer ${localStorage.token}`,
+	};
+}
+const options = {
+	headers: headers,
+};
+
+const users = await fetchData(url, options);
+```
+
+6. **Uloskirjautuminen:**
+   Frontend poistaa tokenin selaimesta.
+
+```js
+localStorage.removeItem('token');
+```
+
+### Tokenien tallentaminen
+
+Paras tapa tallentaa JWT (JSON Web Token) -autentikointitunniste frontendissä riippuu tarkoituksistasi ja turvallisuusnäkökohdista. Tässä muutamia yleisiä menetelmiä:
+
+- Selaimen evästeet
+
+- Paikallinen tallennustila (Local Storage) tai sessiotallennustila (Session Storage). Käytä localStoragea pysyvään tallennukseen yli selainistuntojen ja sessionStoragea istunto-kohtaiseen tallennukseen.
+
+- Muistivarasto: Tallenna JWT-tunniste muistiin käyttämällä JavaScript-muuttujia. Vaikka tämä menetelmä voi olla turvallinen, se vaatii huolellista hallintaa varmistaaksesi, ettei tunniste vuoda XSS-hyökkäysten kautta.
+
+- IndexedDB: Tallenna JWT-tunniste selainmen omaan tietokantaan.
+
+Jokaisella menetelmällä on omat etunsa ja haittansa turvallisuuden, toteutuksen helppouden ja yhteensopivuuden suhteen eri käyttötapausten kanssa. Harkitse sovelluksesi vaatimuksia ja turvallisuustarpeita valitessasi sopivan tavan tallentaa JWT-tunnisteet frontendissä. Kurssilla käytämme LocalStoragea.
+
+## VAIHTOEHTO jos rajapinta ei toimi
+
+Vinkki: Tähän flexbox korttien generoimiseen voit helposti käyttää chatgpt ym apureita. Anna toivottu html koodi ja pyydä tekoälyä kirjoittamaan elementtien luominen js:n avulla. Tarkista kuitenkin että generoitu koodi on järkevää.
+
+Jos rajapintasi ei vielä toimi, voit toistaiseksi hakea korttien tekstisisällön tiedostosta. Luo **diary.json** niminen tiedosto projektiisi ja siirrä se **public** kansioon ja tee fetch suoraan tiedostoon.
 
 ```js
 const url = '/diary.json';
