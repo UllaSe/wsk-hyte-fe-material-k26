@@ -21,11 +21,11 @@ Viikko 4 ja 5
 
 Viikko 6
 
-1. [UI:n päivitys, Flexbox, Dialogit, Modaalit](05-flexbox.md)
+1. [Flexbox, Autentikaatio](05-flexbox.md)
 
 Viikko 7
 
-1.  Validointi, Autentikointi. Yksilötehtävän tekeminen, labra-apu
+1.  Dialogit, Modaalit, Validointi, Formit, UI:n päivitys. Yksilötehtävän tekeminen, labra-apu
 
 Viikko 8
 
