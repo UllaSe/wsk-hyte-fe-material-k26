@@ -100,7 +100,7 @@ let token = localStorage.getItem('token');
 
 if (token) {
 	headers = {
-		Authorization: `Bearer ${localStorage.token}`,
+		Authorization: `Bearer ${token}`,
 	};
 }
 const options = {
