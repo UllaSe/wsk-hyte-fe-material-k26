@@ -22,7 +22,7 @@ Viikko 4 ja 5
 Viikko 6
 
 1. [Flexbox, Autentikaatio](06-flexbox.md)
-2. [Lomakkkeet](06-flexbox.md)
+2. [Lomakkkeet](06-lomakkeet.md)
 
 Viikko 7
 
