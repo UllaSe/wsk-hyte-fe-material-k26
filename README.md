@@ -31,3 +31,7 @@ Viikko 7
 Viikko 8
 
 1. Yksilötehtävä valmis, labra-apu
+
+## Viikon 6 videot
+
+[Google drive linkki videoihin](https://drive.google.com/drive/folders/1stFrtrjj5zybpVyCKGG5yb8WYExXTEkW?usp=sharing)
